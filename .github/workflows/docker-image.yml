@@ -7,10 +7,8 @@ on:
     paths:
       - Dockerfile
       - .github/workflows/docker-image.yml
-    # tags-ignore:
-    #   - "*"
-    tags:
-      - "v*.*.*"
+    tags-ignore:
+      - "*"
 
 jobs:
   docker:
@@ -18,19 +16,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          # list of Docker images to use as base name for tags
-          images: |
-            r600/ipv64-updater           
-          # generate Docker tags based on the following events/attributes
-          tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{SCRIPT_VERSION}}
-            type=semver,pattern=latest
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
@@ -47,5 +32,4 @@ jobs:
           platforms: linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7
           push: true
           #tags: r600/ipv64-updater:latest
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ SCRIPT_VERSION }}
