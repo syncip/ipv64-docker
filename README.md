@@ -1,3 +1,8 @@
+# ipv64 Docker Updater
+Docker Updater for ipv64.net DDNS Service.
+
+## docker-compose.yml
+```
 version: "3.9"
 services:
   ipv64-updater:
@@ -12,3 +17,4 @@ services:
       # - "TZ=Europe/Berlin"                  # optional
       # - "CRON=*/5 * * * *"                  # optional
       # - "NTFY=https://ntfy.sh/mytopic"      # optional
+```
