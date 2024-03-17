@@ -18,6 +18,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build image
-        uses: actions/checkout@v3
+        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f67
         with:
-          run: docker build . --file Dockerfile --tag ipv64-updater:$(date +%s)
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: $(date +%s)
+          labels: ipv64-updater
