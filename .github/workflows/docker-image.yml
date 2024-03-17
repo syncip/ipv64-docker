@@ -9,8 +9,8 @@ on:
       - .github/workflows/docker-image.yml
     tags-ignore:
       - "*"
-  tags:
-    - "v*.*.*"
+    tags:
+      - "v*.*.*"
 
 jobs:
   docker:
