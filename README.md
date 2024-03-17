@@ -1,5 +1,6 @@
 # ipv64 Docker Updater
 Docker Updater for [ipv64.net](https://ipv64.net) DDNS Service.
+Latest Docker Image: [here](https://hub.docker.com/r/r600/ipv64-updater)
 
 ## Features
 - Ready for ipv6  
