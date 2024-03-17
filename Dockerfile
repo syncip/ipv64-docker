@@ -2,7 +2,7 @@ FROM python:3.10-alpine
 
 ENV TZ=Europe/Berlin
 ENV CRON="*/5 * * * *"
-ENV SCRIPT_VERSION="v0.1"
+ENV SCRIPT_VERSION="v0.1.0"
 
 RUN mkdir -p /data
 WORKDIR /data
