@@ -35,5 +35,5 @@ docker run -d \
 	-e "RECORD_TYPE=A" \
 	-e "CRON=*/1 * * * *" \
 	-e "NTFY=https://ntfy.sh/mytopic" \
-	ipv64-updater:latest
+	r600/ipv64-updater:latest
 ```
