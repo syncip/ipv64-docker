@@ -7,8 +7,8 @@ on:
     paths:
       - Dockerfile
       - .github/workflows/docker-image.yml
-    tags-ignore:
-      - "*"
+    # tags-ignore:
+    #   - "*"
     tags:
       - "v*.*.*"
 
