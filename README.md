@@ -5,7 +5,7 @@ Docker Updater for ipv64.net DDNS Service.
 - Ready for ipv6  
 - Updates for domain prefix possible  
 - IP check frequency definable with cron  
-- ntfy (nty.sh) Integration  
+- [ntfy](https://nty.sh) Integration  
 
 ## docker-compose.yml
 ```
