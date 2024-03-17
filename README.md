@@ -17,10 +17,23 @@ services:
     restart: unless-stopped
     environment:
       - "DOMAIN=domain.ipv64.net"
-      - "DOMAIN_KEY=1234567890abcdefghijklmn"
+      - "TOKEN=1234567890abcdefghijklmn"
       - "RECORD_TYPE=A"
       # - "PREFIX=ddns"                      # optional
       # - "TZ=Europe/Berlin"                  # optional
       # - "CRON=*/5 * * * *"                  # optional
       # - "NTFY=https://ntfy.sh/mytopic"      # optional
+```
+
+## docker cli
+```
+docker run -d \
+	--restart unless-stopped
+	--name ipv64
+	-e "DOMAIN=domain.ipv64.net" \
+	-e "TOKEN=1234567890abcdefghijklmn" \
+	-e "RECORD_TYPE=A" \
+	-e "CRON=*/1 * * * *" \
+	-e "NTFY=https://ntfy.sh/mytopic" \
+	ipv64-updater:latest
 ```
