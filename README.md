@@ -12,7 +12,7 @@ Docker Updater for ipv64.net DDNS Service.
 version: "3.9"
 services:
   ipv64-updater:
-    image: r600/ipv64-updater:0.1
+    image: r600/ipv64-updater:latest
     container_name: ipv64
     restart: unless-stopped
     environment:
