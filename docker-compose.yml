@@ -11,5 +11,6 @@ services:
       # - "PREFIX=ddns"                                               # optional, standard "PREFIX=None"
       # - "TZ=Europe/Berlin"                                          # optional, standard "TZ=Europe/Berlin"
       # - "CRON=*/5 * * * *"                                          # optional, standard "CRON=*/5 * * * *"
+      # - "CHECK_RECORD=False"                                        # optional, True = check the dns record for set ip and only update if required, False = update dns record in every run
       # - "NTFY=https://ntfy.sh/mytopic"                              # optional, standard "NTFY=None"
       # - "DISCORD=https://discord.com/api/webhooks/121XXX"           # optional discord webhook, standard "DISCROD=None"
