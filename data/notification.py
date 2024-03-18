@@ -1,6 +1,6 @@
 import requests
  
-def ntfy(url, message, tag):
+def ntfy(url=None, message=None, tag=None):
     if url != None:
         try:
             re = requests.post(url,
