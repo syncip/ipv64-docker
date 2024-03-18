@@ -29,7 +29,7 @@ except:
 try:
     record_type = os.environ['RECORD_TYPE']
 except:
-    record_type = None
+    record_type = "A"
 
 try:
     script_version = os.environ['SCRIPT_VERSION']
@@ -250,9 +250,11 @@ def ipv64_api(current_ip, set_ip, update_token, domain, prefix):
             
         if re.status_code < 400:
             logging.info(f"{domain} (prefix: {prefix}) update successful (old: {set_ip}, new: {current_ip})")
+            # Send ntfy notification if variable url is set
             notification.ntfy(ntfy, f"{domain} (prefix: {prefix}) Record Update successful (old: {set_ip}, new: {current_ip})", "green_circle")
         else:
             logging.warning(f"{domain} (prefix: {prefix}) Update NOT successful.")
+            # Send ntfy notification if variable url is set
             notification.ntfy(ntfy, f"{domain} (prefix: {prefix}) Record Update not successful (old: {set_ip}, new: {current_ip})", "red_circle")
     else:
         logging.info(f"No record update needed for {domain} (prefix: {prefix})")
