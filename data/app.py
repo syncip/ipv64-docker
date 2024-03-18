@@ -35,9 +35,9 @@ try:
 except:
     script_version = None
 try:
-    check_ip = os.environ['CHECK_IP']
+    check_record = os.environ['CHECK_RECORD']
 except:
-    check_ip = True
+    check_record = True
 
 # NOTIFICATIONS ENVIRONMENT VARIABLES
 try:
@@ -279,20 +279,22 @@ def ipv64_api(current_ip, set_ip, update_token, domain, prefix):
         
 if record_type.upper() == "A":
     check_ipv64_status_ipv4()
-    if check_ip == True:
-        current_ip = current_ipv4()
+    current_ip = current_ipv4()
+    if check_record == True:
+        set_ip = check_ipv64_nameserver_ipv4(domain, domain_prefix)
     else:
-        current_ip = None
-    set_ip = check_ipv64_nameserver_ipv4(domain, domain_prefix)
+        set_ip = []
+    
     ipv64_api(current_ip, set_ip, token, domain, domain_prefix)
 
 elif record_type.upper() == "AAAA":
     check_ipv64_status_ipv6()
-    if check_ip == True:
-        current_ip = current_ipv6()
+    current_ip = current_ipv6()
+    if check_record == True:
+        set_ip = check_ipv64_nameserver_ipv6(domain, domain_prefix)
     else:
-        current_ip = None
-    set_ip = check_ipv64_nameserver_ipv6(domain, domain_prefix)
+        set_ip = []
+        
     ipv64_api(current_ip, set_ip, token, domain, domain_prefix)
 
 else:
