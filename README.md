@@ -6,7 +6,8 @@ Latest Docker Image: [here](https://hub.docker.com/r/r600/ipv64-updater)
 - Ready for ipv6 (your Docker network must support IPv6)  
 - Updates for domains with prefix possible  
 - IP check frequency definable with cron  
-- [ntfy](https://ntfy.sh) notification Integration  
+- [ntfy](https://ntfy.sh) notification support  
+- Discord Webhook support  
 
 ## docker-compose.yml
 ```
@@ -19,11 +20,12 @@ services:
     environment:
       - "DOMAIN=domain.ipv64.net"
       - "TOKEN=1234567890abcdefghijklmn"
-      # - "RECORD_TYPE=A"                     # optional, standard "RECORD_TYPE=A"
-      # - "PREFIX=ddns"                       # optional, standard "PREFIX=None"
-      # - "TZ=Europe/Berlin"                  # optional, standard "TZ=Europe/Berlin"
-      # - "CRON=*/5 * * * *"                  # optional, standard "CRON=*/5 * * * *"
-      # - "NTFY=https://ntfy.sh/mytopic"      # optional, standard "NTFY=None"
+      # - "RECORD_TYPE=A"                                             # optional, standard "RECORD_TYPE=A"
+      # - "PREFIX=ddns"                                               # optional, standard "PREFIX=None"
+      # - "TZ=Europe/Berlin"                                          # optional, standard "TZ=Europe/Berlin"
+      # - "CRON=*/5 * * * *"                                          # optional, standard "CRON=*/5 * * * *"
+      # - "NTFY=https://ntfy.sh/mytopic"                              # optional, standard "NTFY=None"
+      # - "DISCORD=https://discord.com/api/webhooks/121XXX"           # optional discord webhook, standard "DISCROD=None"
 ```
 
 ## docker cli
@@ -36,5 +38,6 @@ docker run -d \
 	-e "RECORD_TYPE=A" \
 	-e "CRON=*/5 * * * *" \
 	-e "NTFY=https://ntfy.sh/mytopic" \
+  -e "DISCORD=https://discord.com/api/webbhooks/XXX" \
 	r600/ipv64-updater:latest
 ```
