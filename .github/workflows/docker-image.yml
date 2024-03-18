@@ -35,4 +35,4 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7
           push: true
-          tags: r600/ipv64-updater:0.2.0,r600/ipv64-updater:latest
+          tags: r600/ipv64-updater:0.3.0,r600/ipv64-updater:latest
