@@ -38,6 +38,7 @@ docker run -d \
 	-e "TOKEN=1234567890abcdefghijklmn" \
 	-e "RECORD_TYPE=A" \
 	-e "CRON=*/5 * * * *" \
+  -e "CHECK_RECORD=True" \
 	-e "NTFY=https://ntfy.sh/mytopic" \
   -e "DISCORD=https://discord.com/api/webbhooks/XXX" \
 	r600/ipv64-updater:latest
