@@ -7,7 +7,7 @@ Latest Docker Image: [here](https://hub.docker.com/r/r600/ipv64-updater)
 - Updates for domains with prefix possible  
 - IP check frequency definable with cron  
 - [ntfy](https://ntfy.sh) notification support  
-- Discord Webhook support  
+- Discord webhook support  
 
 ## docker-compose.yml
 ```
