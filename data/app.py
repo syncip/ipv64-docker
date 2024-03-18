@@ -41,6 +41,11 @@ try:
     ntfy = os.environ['NTFY']
 except:
     ntfy = None
+try:
+    discord = os.environ['DISCORD']
+except:
+    discord = None
+
 
 if token == None or domain == None or record_type == None:
     logging.warning(f"Environment Variables missing. Exit Script.")
@@ -250,12 +255,16 @@ def ipv64_api(current_ip, set_ip, update_token, domain, prefix):
             
         if re.status_code < 400:
             logging.info(f"{domain} (prefix: {prefix}) update successful (old: {set_ip}, new: {current_ip})")
-            # Send ntfy notification if variable url is set
+            
+            # Send notification if variable url is set
             notification.ntfy(ntfy, f"{domain} (prefix: {prefix}) Record Update successful (old: {set_ip}, new: {current_ip})", "green_circle")
+            notification.discord(discord, f":green_circle: {domain} (prefix: {prefix}) Record Update successful (old: {set_ip}, new: {current_ip})")
         else:
             logging.warning(f"{domain} (prefix: {prefix}) Update NOT successful.")
-            # Send ntfy notification if variable url is set
+            
+            # Send notification if variable url is set
             notification.ntfy(ntfy, f"{domain} (prefix: {prefix}) Record Update not successful (old: {set_ip}, new: {current_ip})", "red_circle")
+            notification.discord(discord, f":red_circle: {domain} (prefix: {prefix}) Record Update not successful (old: {set_ip}, new: {current_ip})")
     else:
         logging.info(f"No record update needed for {domain} (prefix: {prefix})")
 
