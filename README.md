@@ -29,6 +29,16 @@ services:
       # - "DISCORD=https://discord.com/api/webhooks/121XXX"           # optional discord webhook, standard "DISCROD=None"
 ```
 
+## Environment variables
+* `DOMAIN`: Your ipv64 Domain  
+* `TOKEN`: Your Domain Update Token  
+* `PREFIX`: Optional, your Domain prefix (default: `none`)  
+* `TZ`: Optional, your Timezone for cron (default: `Europe/Berlin`)  
+* `CRON`: Optional, Crontab to run the Updater (default: `*/5 * * * *` (run the Updater all 5 minutes))  
+* `CHECK_RECORD`: Optional, `True` = Check if your IP is equal to the DNS record, `False` = Update the DNS record in every run, do not check the set DNS record (default: `True`)  
+* `NTFY`: Optional, your ntfy notification url  
+* `DISCORD`: Optional, your discord webhook url  
+
 ## docker cli
 ```
 docker run -d \
