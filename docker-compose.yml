@@ -5,12 +5,30 @@ services:
     container_name: ipv64
     restart: unless-stopped
     environment:
+      # --- Einzel-Domain (einfachster Fall) ---
       - "DOMAIN=domain.ipv64.net"
       - "TOKEN=1234567890abcdefghijklmn"
-      # - "RECORD_TYPE=A"                                             # optional, standard "RECORD_TYPE=A"
-      # - "PREFIX=ddns"                                               # optional, standard "PREFIX=None"
-      # - "TZ=Europe/Berlin"                                          # optional, standard "TZ=Europe/Berlin"
-      # - "CRON=*/5 * * * *"                                          # optional, standard "CRON=*/5 * * * *"
-      # - "CHECK_RECORD=False"                                        # optional, True = check the dns record for set ip and only update if required, False = update dns record in every run, standard True
-      # - "NTFY=https://ntfy.sh/mytopic"                              # optional, standard "NTFY=None"
-      # - "DISCORD=https://discord.com/api/webhooks/121XXX"           # optional discord webhook, standard "DISCROD=None"
+      # - "PREFIX=ddns"                # optional, Standard: kein Prefix
+      # - "RECORD_TYPE=A"              # optional: "A", "AAAA" oder "A,AAAA". Standard: "A"
+      # - "CHECK_RECORD=True"          # optional, Standard: True
+
+      # --- Mehrere Domains gleichzeitig (optional, beliebig erweiterbar) ---
+      # - "DOMAIN_1=erste.ipv64.net"
+      # - "TOKEN_1=..."                # falls leer: es wird der globale TOKEN genutzt (z. B. Account-Key)
+      # - "RECORD_TYPE_1=A,AAAA"
+      # - "DOMAIN_2=zweite.ipv64.net"
+      # - "PREFIX_2=vpn"
+
+      # --- Allgemein ---
+      # - "TZ=Europe/Berlin"           # optional, Standard: Europe/Berlin
+      # - "INTERVAL=300"               # optional, Sekunden zwischen den Pruefungen. Standard: 300 (5 Min)
+
+      # --- Rate-Limit-Schutz (IPv64 erlaubt standardmaessig 48 Updates/24h,
+      #     max. 3 Requests/10s pro Key) ---
+      # - "MAX_UPDATES_PER_DAY=40"     # optional, eigenes Soft-Limit pro Domain/Record. Standard: 40
+      # - "MIN_REQUEST_INTERVAL=5"     # optional, Mindestabstand zw. API-Calls in Sek. Standard: 5
+
+      # --- Benachrichtigungen ---
+      # - "NTFY=https://ntfy.sh/mytopic"
+      # - "DISCORD=https://discord.com/api/webhooks/121XXX"
+      # - "NOTIFY_ON_SUCCESS=True"     # optional, Erfolgsmeldung bei jedem Update. Standard: True

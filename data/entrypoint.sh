@@ -1,18 +1,15 @@
-#!/usr/bin/env bash
+#!/bin/sh
+set -e
 
-echo "██ ██████  ██    ██  ██████  ██   ██     ██    ██ ██████  ██████   █████  ████████ ███████ ██████  ";
-echo "██ ██   ██ ██    ██ ██       ██   ██     ██    ██ ██   ██ ██   ██ ██   ██    ██    ██      ██   ██ ";
-echo "██ ██████  ██    ██ ███████  ███████     ██    ██ ██████  ██   ██ ███████    ██    █████   ██████  ";
-echo "██ ██       ██  ██  ██    ██      ██     ██    ██ ██      ██   ██ ██   ██    ██    ██      ██   ██ ";
-echo "██ ██        ████    ██████       ██      ██████  ██      ██████  ██   ██    ██    ███████ ██   ██ ";
-echo "Version: $SCRIPT_VERSION"
-echo "                                                                                                   ";
-echo "                                                                                                   ";
+echo "██ ██████  ██    ██  ██████  ██   ██     ██    ██ ██████  ██████   █████  ████████ ███████ ██████  "
+echo "██ ██   ██ ██    ██ ██       ██   ██     ██    ██ ██   ██ ██   ██ ██   ██    ██    ██      ██   ██ "
+echo "██ ██████  ██    ██ ███████  ███████     ██    ██ ██████  ██   ██ ███████    ██    █████   ██████  "
+echo "██ ██       ██  ██  ██    ██      ██     ██    ██ ██      ██   ██ ██   ██    ██    ██      ██   ██ "
+echo "██ ██        ████    ██████       ██      ██████  ██      ██████  ██   ██    ██    ███████ ██   ██ "
+echo "Version: ${SCRIPT_VERSION}"
+echo ""
 
-
-touch /etc/cron/crontab
-echo "$CRON   python /data/app.py" >> /etc/cron/crontab
-chmod 0644 /etc/cron/crontab
-crontab /etc/cron/crontab
-
-crond -f
+# exec ist wichtig: dadurch wird python zu PID des Vordergrundprozesses und
+# erhaelt SIGTERM/SIGINT direkt von tini, statt dass dieses sh-Skript als
+# zusaetzliche Zwischenebene das Signal erst weiterleiten muesste.
+exec python -u /data/app.py
