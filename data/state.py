@@ -149,12 +149,23 @@ def load_domain_configs():
     return configs
 
 
+def _clean_hostname_part(value):
+    """Entfernt Leerzeichen sowie fuehrende/nachgestellte Punkte, z. B. wenn
+    jemand aus Versehen 'vpn.meinserver.ipv64.net.' oder ' vpn.meinserver...'
+    eingibt. Erlaubt bewusst mehrstufige Werte wie 'vpnhome.vpn' oder
+    komplette FQDNs wie 'vpn.meinserver.ipv64.net' in DOMAIN/PREFIX."""
+    if value is None:
+        return None
+    cleaned = value.strip().strip(".")
+    return cleaned or None
+
+
 def _build_domain_config(domain, token, prefix, record_type, check_record):
     record_types = [rt.strip().upper() for rt in (record_type or "A").split(",") if rt.strip()]
     return {
-        "domain": domain,
-        "token": token,
-        "prefix": prefix or None,
+        "domain": _clean_hostname_part(domain),
+        "token": token.strip() if token else None,
+        "prefix": _clean_hostname_part(prefix),
         "record_types": record_types or ["A"],
         "check_record": bool_env(check_record, default=True),
     }

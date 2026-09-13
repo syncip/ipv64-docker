@@ -12,6 +12,10 @@ services:
       # - "RECORD_TYPE=A"              # optional: "A", "AAAA" oder "A,AAAA". Standard: "A"
       # - "CHECK_RECORD=True"          # optional, Standard: True
 
+      # --- Prefix kann statt ueber PREFIX auch direkt in DOMAIN angegeben werden ---
+      # - "DOMAIN=vpn.meinserver.ipv64.net"
+      # - "DOMAIN=vpnhome.vpn.meinedomain.ipv64.net"   # beliebig viele Ebenen moeglich
+
       # --- Mehrere Domains gleichzeitig (optional, beliebig erweiterbar) ---
       # - "DOMAIN_1=erste.ipv64.net"
       # - "TOKEN_1=..."                # falls leer: es wird der globale TOKEN genutzt (z. B. Account-Key)

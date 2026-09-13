@@ -57,6 +57,23 @@ Ein vollstaendiges Beispiel inkl. Multi-Domain-Konfiguration findest du in [`doc
 
 \* Entweder `DOMAIN`/`TOKEN` **oder** mindestens ein `DOMAIN_1`/`TOKEN_1`-Paar (siehe unten) muss gesetzt sein.
 
+### Prefix direkt in der Domain angeben
+`PREFIX` ist rein optional. Du kannst eine beliebig tief verschachtelte Subdomain
+auch direkt komplett in `DOMAIN` eintragen - `PREFIX` einfach weglassen:
+
+```
+DOMAIN=vpn.meinserver.ipv64.net
+```
+```
+DOMAIN=vpnhome.vpn.meinedomain.ipv64.net
+```
+Beides wird dann unveraendert als kompletter Hostname an ipv64 gemeldet.
+Alternativ kannst du weiterhin `DOMAIN` (Basis-Domain) + `PREFIX` (auch mehrstufig,
+z. B. `vpnhome.vpn`) getrennt angeben - beide Wege fuehren zum selben Ergebnis.
+Nutze getrennte Felder vor allem dann, wenn du mit einem Account-Key arbeitest
+und ipv64 die Subdomain dynamisch ueber den `praefix`-Parameter anlegen soll;
+ansonsten ist die komplette Angabe in `DOMAIN` der unkompliziertere Weg.
+
 ### Mehrere Domains
 Fuer jede zusaetzliche Domain eine durchnummerierte Variablengruppe anlegen (beliebig viele, beginnend bei `1`):
 
